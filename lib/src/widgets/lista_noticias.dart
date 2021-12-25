@@ -10,7 +10,7 @@ class ListaNoticias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: this.noticias.length,
+      itemCount: noticias.length,
       itemBuilder: (BuildContext context, int index) {
         return _Noticia(noticias[index], index);
       },
@@ -31,7 +31,40 @@ class _Noticia extends StatelessWidget {
         _tarjetaTopBar(noticia, index),
         _tarjetaNoticia(noticia: noticia),
         _tarjetaImagen(noticia: noticia),
+        _tarjetaBody(noticia: noticia),
+        _TarjetaBotones()
+        SizedBox(height: 10,),
+        Divider()
       ],
+    );
+  }
+}
+
+class _TarjetaBotones extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
+  }
+}
+class _tarjetaBody extends StatelessWidget {
+  const _tarjetaBody({
+    Key? key,
+    required this.noticia,
+  }) : super(key: key);
+
+  final Article noticia;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.only(bottom: 20),
+      child: Text(
+        noticia.description != null ? noticia.description! : 'Sin descripcion',
+        style: const TextStyle(fontSize: 18),
+      ),
     );
   }
 }
@@ -47,7 +80,21 @@ class _tarjetaImagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('hola mundo '),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        child: Container(
+            child: (noticia.urlToImage != null)
+                ? FadeInImage(
+                    placeholder: const AssetImage('assets/giphy.gif'),
+                    image: NetworkImage(noticia.urlToImage!),
+                    fit: BoxFit.cover,
+                  )
+                : const Image(
+                    image: AssetImage('assets/no-image.png'),
+                    fit: BoxFit.cover,
+                  )),
+      ),
     );
   }
 }
@@ -63,10 +110,10 @@ class _tarjetaNoticia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Text(
         noticia.title,
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -80,16 +127,21 @@ class _tarjetaTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: [
           Text(
             '${index + 1}',
-            style: TextStyle(color: mitema.accentColor),
+            style: const TextStyle(color: Colors.redAccent, fontSize: 25),
           ),
           Text(
-            '${noticia.source.name}',
+            noticia.source.name,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 29,
+            ),
           ),
         ],
       ),
