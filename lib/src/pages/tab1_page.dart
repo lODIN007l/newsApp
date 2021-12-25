@@ -6,8 +6,13 @@ import 'package:provider/provider.dart';
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final noticias = Provider.of<NewsService>(context).headlines;
+    final headlines = Provider.of<NewsService>(context).headlines;
 
-    return Scaffold(body: ListaNoticias(noticias));
+    return Scaffold(
+        body: (headlines.length == 0)
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListaNoticias(headlines));
   }
 }

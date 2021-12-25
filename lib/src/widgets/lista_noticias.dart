@@ -32,9 +32,11 @@ class _Noticia extends StatelessWidget {
         _tarjetaNoticia(noticia: noticia),
         _tarjetaImagen(noticia: noticia),
         _tarjetaBody(noticia: noticia),
-        _TarjetaBotones()
-        SizedBox(height: 10,),
-        Divider()
+        _TarjetaBotones(),
+        const SizedBox(
+          height: 10,
+        ),
+        const Divider()
       ],
     );
   }
@@ -44,10 +46,40 @@ class _TarjetaBotones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      margin: const EdgeInsets.all(3),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RawMaterialButton(
+            onPressed: () {},
+            fillColor: Colors.amberAccent,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: const Icon(
+              Icons.star_border_purple500,
+              size: 35,
+              color: Colors.pinkAccent,
+            ),
+          ),
+          const SizedBox(
+            width: 35,
+          ),
+          RawMaterialButton(
+            onPressed: () {},
+            fillColor: Colors.blueAccent,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: const Icon(
+              Icons.my_library_books_outlined,
+              size: 35,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
+
 class _tarjetaBody extends StatelessWidget {
   const _tarjetaBody({
     Key? key,

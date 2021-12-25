@@ -25,10 +25,11 @@ class _Navegacion extends StatelessWidget {
         currentIndex: navegacionModel.paginaActualG,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_add_alt_outlined), title: Text('Person')),
+              icon: Icon(Icons.person_add_alt_outlined),
+              title: Text('Para ti')),
           BottomNavigationBarItem(
               icon: Icon(Icons.wallet_membership_outlined),
-              title: Text('Person')),
+              title: Text('Categorias')),
         ]);
   }
 }
